@@ -1,5 +1,5 @@
-import { BrowserContext, expect, Page } from "@playwright/test";;
-import { TIMEOUT } from "dns";
+import { Page } from "@playwright/test";
+
 import BookingPage from '../pages/bookingPage'; 
 
 export default class HotelInformationPage {

@@ -3,8 +3,11 @@ import HomePage from "../pages/homePage";
 import AvailbilityPage from '../pages/availabilityPage';
 import HotelInformationPage from '../pages/hotelInformationPage';
 import BookingPage from '../pages/bookingPage';
+import TravelerInformationPage from '../pages/travelersInfoPage';
+import PaymentPage from '../pages/paymentPage';
 
-test("Test Only Search", async({page}) => {
+
+test("End to End - Test Hotel Only Search", async({page}) => {
 
     const home = new HomePage(page)
     const availiabilityPage = new AvailbilityPage(page)
@@ -23,7 +26,7 @@ test("Test Only Search", async({page}) => {
         await home.selectCheckInDate()
     })
 
-    await test.step("Select Rooms", async ()  => {
+    await test.step("Select Rooms search", async ()  => {
         await home.selectRooms()
     })
 
@@ -43,11 +46,20 @@ test("Test Only Search", async({page}) => {
         return await availiabilityPage.selectHotel()
     })
 
-    await test.step("Select Rooms", async ()  => {
+    await test.step("Select Room Category", async ()  => {
         const hotelInformationPage = new HotelInformationPage(newTab)
         await hotelInformationPage.clickSelectHotel()
         bookingPage = await hotelInformationPage.clickSelectAvalHotel()
-        await bookingPage.verifyNewPage()
-       // await bookingPage.clickT()
+        await bookingPage.selectTravelProtection()
+       
+    })
+    await test.step("Fill travelers information", async ()  => {
+        const travelerInformationPage = new TravelerInformationPage(newTab)
+        await travelerInformationPage.travelersForm()
+    })
+
+    await test.step("Verify Payment Page", async ()  => {
+        const paymentPage = new PaymentPage(newTab)
+        await paymentPage.verifyPaymentPage()
     })
 })
