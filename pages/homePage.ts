@@ -11,6 +11,7 @@ export default class HomePage {
         destinationSelector: "#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_Destination_SelectizeInput",
         citySelected: "#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_Destination_CUN",
         locatorCheckInDate: "#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_departure",
+        locatorCheckOutDate: "#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_return",
         locatorRoomsField: '#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_passengers_numrooms',
         locatorChildrenField: '#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_passengers_pr_ctl00_pi_children',
         locatorAdultsField: '#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_passengers_pr_ctl00_pi_adults',
@@ -56,9 +57,10 @@ export default class HomePage {
         await this.page.fill(this.Elements.locatorCheckInDate, this.Variables.checkInDate)
     }
 
-    async selectDepartDate(){
+    async selectDates(){
         // Check Return Date
         await this.page.fill(this.Elements.flightDepartDate, this.Variables.checkInDate)
+        await this.page.locator(this.Elements.locatorCheckOutDate).click()
     }
 
 

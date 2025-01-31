@@ -81,7 +81,7 @@ test("End to End - Test Flight + Hotel Search", async({page}) => {
         await home.flightHotelSearch()
     })
     await test.step("Select check In Date", async ()  => {
-        await home.selectDepartDate()
+        await home.selectDates()
     })
 
     await test.step("Select Rooms search", async ()  => {
