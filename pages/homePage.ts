@@ -15,7 +15,10 @@ export default class HomePage {
         locatorChildrenField: '#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_passengers_pr_ctl00_pi_children',
         locatorAdultsField: '#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_passengers_pr_ctl00_pi_adults',
         searchButton: '#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_submit',
-        locatorWaitModal1: "#WaitScreenModalDescription"
+        locatorWaitModal1: "#WaitScreenModalDescription",
+        locatorDepartingFrom: "#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_Origin_SelectizeInput",
+        originCitySelected: "#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_Origin_ORD",
+        flightDepartDate: "#ctl00_ctl01_ContentPlaceHolder_ContentPlaceHolder_SearchComponents_scc_rt_departure"
     }
 
     private Variables = {
@@ -53,6 +56,12 @@ export default class HomePage {
         await this.page.fill(this.Elements.locatorCheckInDate, this.Variables.checkInDate)
     }
 
+    async selectDepartDate(){
+        // Check Return Date
+        await this.page.fill(this.Elements.flightDepartDate, this.Variables.checkInDate)
+    }
+
+
     async selectRooms(){
          //Rooms
          if (this.Variables.numRooms == 1) {
@@ -88,5 +97,17 @@ export default class HomePage {
         await this.page.waitForSelector(this.Elements.locatorWaitModal1)
     }
 
+    async flightHotelSearch() {
+
+        //Select origin
+        await this.page.locator(this.Elements.locatorDepartingFrom).click()
+        //await this.page.locator(this.Elements.locatorDepartingFrom).hover()
+        await this.page.locator(this.Elements.originCitySelected).click()
+
+        //Select the Destination
+        await this.page.locator(this.Elements.destinationSelector).click()
+        await this.page.locator(this.Elements.destinationSelector).hover()
+        await this.page.locator(this.Elements.citySelected).click()
+    }
     
 }
